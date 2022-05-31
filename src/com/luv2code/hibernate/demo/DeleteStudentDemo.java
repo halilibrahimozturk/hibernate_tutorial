@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class UpdateStudentDemo {
+public class DeleteStudentDemo {
 
     public static void main(String[] args) {
 
@@ -26,9 +26,6 @@ public class UpdateStudentDemo {
 
             int studentId = 1;
 
-            //find out the student's id : primary key
-            System.out.println("Saved student. Generated id: " + studentId);
-
             //now get a new session and start a transaction
             session = factory.getCurrentSession();
             session.beginTransaction();
@@ -38,25 +35,23 @@ public class UpdateStudentDemo {
 
             Student myStudent = session.get(Student.class, studentId);
 
-            System.out.println("Updating student... " + myStudent);
+            // delete the student
 
-            myStudent.setFirstName("Scooby");
+//            System.out.println("Deleting student: "+myStudent);
+//
+//            session.delete(myStudent);
 
-            // NEW CODE
-            session = factory.getCurrentSession();
-            session.beginTransaction();
+            //delete the student id=2 with another way
 
-            //update email for all students
+            System.out.println("Deleting student id=2");
 
-            System.out.println("Update email for all students");
-
-            session.createQuery("update Student set email='foo@gmail.com'")
+            session.createQuery("delete from Student where id=2")
                     .executeUpdate();
+
 
 
             //commit the transaction
             session.getTransaction().commit();
-
 
             System.out.println("Done!");
 
