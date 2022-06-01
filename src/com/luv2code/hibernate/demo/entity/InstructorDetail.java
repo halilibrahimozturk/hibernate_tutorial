@@ -31,6 +31,9 @@ public class InstructorDetail {
 
     ///////////////
 
+
+    // add new field for instructor (also add getter/setter methods)
+
     @OneToOne(mappedBy = "instructorDetail" , cascade = CascadeType.ALL)
     private Instructor instructor;
 
