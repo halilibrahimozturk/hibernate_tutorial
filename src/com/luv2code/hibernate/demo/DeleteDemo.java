@@ -33,7 +33,7 @@ public class DeleteDemo {
             // get insturctor by primary key (id)
 
 
-            int theId = 2;
+            int theId = 3;
             Instructor tempIntructor =
                     session.get(Instructor.class, theId);
 

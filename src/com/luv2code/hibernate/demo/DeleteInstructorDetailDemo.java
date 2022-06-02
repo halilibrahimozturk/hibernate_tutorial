@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class GetInstructorDetailDemo {
+public class DeleteInstructorDetailDemo {
 
     public static void main(String[] args) {
 
@@ -32,7 +32,7 @@ public class GetInstructorDetailDemo {
 
             // get the instructor detail object
 
-            int theId = 231;
+            int theId = 4;
 
             InstructorDetail tempInstructorDetail =
                     session.get(InstructorDetail.class, theId);
@@ -46,6 +46,16 @@ public class GetInstructorDetailDemo {
             // print the associated instructor
             System.out.println("the associated instructor: " +
                     tempInstructorDetail.getInstructor().getFirstName());
+
+            // now lets delet the instructor detail
+            System.out.println("Deletin tempInstructorDetail" + tempInstructorDetail);
+            session.delete(tempInstructorDetail);
+
+
+            // removethe associated object reference
+            // break bi-directional Link
+
+            tempInstructorDetail.getInstructor().setInstructorDetail(null);
 
             //commit transaction
             session.getTransaction().commit();
