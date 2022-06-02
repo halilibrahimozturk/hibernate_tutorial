@@ -38,13 +38,21 @@ public class EagerLazyDemo {
                     theId);
 
 
-            System.out.println("Halil İbrahim Öztürk: Instructor: "+tempInstructor.getFirstName() + tempInstructor.getLastName());
+            System.out.println("Halil İbrahim Öztürk: Instructor: " + tempInstructor.getFirstName() + tempInstructor.getLastName());
 
-            //get course for the instructor
-            System.out.println("Halil İbrahim Öztürk: Courses: "+tempInstructor.getCourses());
+            System.out.println("Halil İbrahim Öztürk: Courses: " + tempInstructor.getCourses());
 
             //commit transaction
             session.getTransaction().commit();
+
+            //close the session
+            session.close();
+
+            //option 1: call getter method while session is open
+
+            //get course for the instructor
+            System.out.println("Halil İbrahim Öztürk: Courses: " + tempInstructor.getCourses());
+
             System.out.println("Halil İbrahim Öztürk: Done!");
         } finally {
 
