@@ -1,6 +1,8 @@
 package com.luv2code.hibernate.demo.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "course")
@@ -24,9 +26,33 @@ public class Course {
     private Instructor instructor;
 
 
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> review) {
+        this.reviews = review;
+    }
+
     public Course() {
 
 
+    }
+
+    // add a conveience method
+    public void addReview (Review theReview){
+
+        if(reviews==null){
+
+            reviews=new ArrayList<>();
+        }
+
+        reviews.add(theReview);
     }
 
     public Course(String title) {
