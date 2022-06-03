@@ -46,7 +46,11 @@ public class EagerLazyDemo {
             session.getTransaction().commit();
 
             //close the session
-            session.close();
+
+
+//            session.close();
+//            System.out.println("The session is now closed!\n");
+
 
             //option 1: call getter method while session is open
 
@@ -57,7 +61,7 @@ public class EagerLazyDemo {
         } finally {
 
             //add clean up code
-            session.close();
+//            session.close();
 
             factory.close();
         }
