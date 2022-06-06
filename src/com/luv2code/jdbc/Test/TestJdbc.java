@@ -7,7 +7,7 @@ public class TestJdbc {
     public static void main(String[] args){
 
 
-        String jdbcUrl ="jdbc:mysql://localhost:3306/hb-04-one-to-many-uni?useSSL=false";
+        String jdbcUrl ="jdbc:mysql://localhost:3306/hb-05-many-to-many?useSSL=false";
 
         String user="root";
 

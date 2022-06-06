@@ -26,10 +26,36 @@ public class Course {
     private Instructor instructor;
 
 
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
+
+    @ManyToMany(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    //add a conveience method
+
+    public void addStudent(Student theStudent) {
+        if (students == null) {
+            students = new ArrayList<>();
+        }
+
+        students.add(theStudent);
+
+    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -45,11 +71,11 @@ public class Course {
     }
 
     // add a conveience method
-    public void addReview (Review theReview){
+    public void addReview(Review theReview) {
 
-        if(reviews==null){
+        if (reviews == null) {
 
-            reviews=new ArrayList<>();
+            reviews = new ArrayList<>();
         }
 
         reviews.add(theReview);
@@ -58,7 +84,6 @@ public class Course {
     public Course(String title) {
         this.title = title;
     }
-
 
 
     public int getId() {
